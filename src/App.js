@@ -1,7 +1,6 @@
 
 import './App.css';
 import Navbar from './Navbar';
-import ReminderInput from './ReminderInput';
 import ToDoInput from './ToDoInput';
 import { useState } from 'react';
 
@@ -9,17 +8,15 @@ import { useState } from 'react';
 // reminders > 0 ? <ReminderListCard /> : null
 
 function App() {
+
   return (
     <div className="App">
       <header>
         <Navbar />
       </header>
-      <body>
-        <div className='inputs'>
-          <ToDoInput />
-          <ReminderInput />
-        </div>
-      </body>
+      <div className='inputs'>
+        <ToDoInput />
+      </div>
     </div>
   );
 }
