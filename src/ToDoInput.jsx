@@ -1,52 +1,51 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function ToDoInput(){
-  const [input, setInput] = useState("");
-  const [todos, setTodos] = useState([]);
+function ToDoInput() {
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
 
-  const handleSubmition = (e) => {
-    e.preventDefault();
-  
-    setTodos((currentToDos) => {
-      return [...currentToDos, { id: crypto.randomUUID(), title: input }];
-    });
+  const [taskInput, setTaskInput] = useState('');
 
-    setInput("");
-  }
+  const addTask = () => {
+    if (taskInput.trim() !== '') {
+      const newTasks = [...tasks, taskInput];
+      setTasks(newTasks);
+      setTaskInput('');
+    }
+  };
 
-  const handleDelete = (id) => {
-    setTodos((currentToDos) => {
-      return currentToDos.filter(todo => todo.id !== id);
-    });
-  }
+  const deleteTask = (index) => {
+    const newTasks = tasks.filter((task, i) => i !== index);
+    setTasks(newTasks);
+  };
 
-    return (
-      <div className='todoinputMainDiv'>
-          <form onSubmit={handleSubmition} className='todoAdd'>
-            <h1>Add a task to the To Do List</h1>
-            <div className='todoInput'>
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                type="text"
-                placeholder="Add a task" />
-              <button className='addButton'>+</button>
-            </div>
-          </form>
-          <div className='todoslist'>
-            <h1 className='tasks-h1'>Tasks</h1>
-            <ul className='todoList'>
-              {todos.map((todo) => (
-                <li key={todo.id} className='todoTaskAdded'>
-                  <label>{todo.title}</label>
-                  <button 
-                    className='deleteButton' 
-                    onClick={() => handleDelete(todo.id)}
-                  >X</button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-    );
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+  return (
+    <div className="todoinputMainDiv">
+      <h1 className="tasks-h1">Tasks</h1>
+      <div className="todoInput">
+        <input 
+          type="text" 
+          value={taskInput}
+          onChange={(e) => setTaskInput(e.target.value)}
+        />
+        <button className="addButton" onClick={addTask}>Add Task</button>
+      </div>
+      <ul className="todoList">
+        {tasks.map((task, index) => (
+          <li key={index} className="todoTaskAdded">
+            <span>{task}</span>
+            <button className="deleteButton" onClick={() => deleteTask(index)}>X</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
+
+export default ToDoInput;
