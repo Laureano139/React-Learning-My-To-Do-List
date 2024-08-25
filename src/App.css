@@ -1,0 +1,92 @@
+.navbar {
+  background-color: #020618;
+}
+
+.navbarItems {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.navbar button {
+  border-radius: 40%;
+  text-decoration: none;
+  padding: 1rem;
+  background-color: transparent;
+  border-color: aquamarine;
+  cursor: pointer;
+  color: white;
+}
+
+.navbarLinks {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  justify-content: space-between;
+}
+
+.navbarLinks button:hover {
+  font-weight: bold;
+}
+
+body {
+  background-color: #03071E;
+}
+
+.navbarAppText {
+  color: white;
+}
+
+.navbarDiffColorText {
+  color: aquamarine;
+}
+
+
+
+
+
+
+.inputs{
+  display: flex;
+  flex-direction: row;
+  padding: 10rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todoAdd{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todoAdd h1{
+  color: white;
+}
+
+.todoInput{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.todoInput input{
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+  width: 300px;
+}
+
+.addButton {
+  font-weight: bold;
+  border-radius: 40%;
+  text-decoration: none;
+  padding: 1rem;
+  background-color: transparent;
+  border-color: aquamarine;
+  cursor: pointer;
+  color: white;
+}
